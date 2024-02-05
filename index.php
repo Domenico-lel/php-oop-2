@@ -13,6 +13,18 @@
 
     class Prodotto
     {
+        public $nome;
+        public $prezzo;
+        public $categoria;
+        public $tipo;
+
+        public function __construct($nome, $prezzo, $categoria, $tipo)
+        {
+            $this->nome = $nome;
+            $this->prezzo = $prezzo;
+            $this->categoria = $categoria;
+            $this->tipo = $tipo;
+        }
     }
 
 
