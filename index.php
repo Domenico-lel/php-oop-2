@@ -4,46 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AnimalCommerce</title>
-
-    <?php require_once(__DIR__ . "/db.php"); ?>
+    <title>E-commerce Animali</title>
 </head>
 
 <body>
-
-    <ul>
+    <div class="wrap">
         <?php
-        foreach ($prods as $prod) {
+        include("./db.php");
 
-        ?>
+        foreach ($array_prodotti as $prod) { ?>
 
-            <li>
-                <h3>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <?php
+                        echo $prod->getTitolo();
+                        ?>
+                    </h5>
+                    <p class="card-text">
+                        <?php
+                        echo $prod->getPrezzo();
+                        ?>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <?php
+                        echo $prod->getIcon();
+                        ?>
+                    </li>
+
+                    <li class="list-group-item">
+                        <?php
+                        echo $prod->getTipo();
+                        ?>
+                    </li>
+
+                    <li class="list-group-item">
+                        <?php
+                        echo $prod->getImmage();
+                        ?>
+                    </li>
+
+                    <li class="list-group-item">
+                        <?php
+                        echo $prod->get();
+                        ?>
+                    </li>
+                </ul>
+                <div class="card-body">
                     <?php
-                    echo $prod->getTypology();
+                    echo $prod->getCategoria()->getName();
                     ?>
-                </h3>
-                <?php
-                echo $prod->getTitle();
-                ?>:
-                <?php
-                echo $prod->getPrice();
-                ?>
-                Euro
-                <br>
-                <img src="<?php echo $prod->getImage() ?>" width="100" />
-                <br>
-                Category:
-                <img src="<?php echo $prod->getCategory()->getIcon() ?>" width="30" />
-                <?php
-                echo $prod->getCategory()->getName();
-                ?>
-            </li>
-
+                </div>
+            </div>
         <?php
         }
         ?>
-    </ul>
+    </div>
+
+    <style>
+        .wrap {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            border: 1px solid black;
+            text-align: center;
+            width: 33%;
+        }
+    </style>
+
+
+
+
+
 </body>
 
 </html>
